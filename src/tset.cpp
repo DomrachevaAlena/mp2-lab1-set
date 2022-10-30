@@ -147,7 +147,7 @@ istream &operator>>(istream &istr, TSet &s) // ввод
     while (sym != '.')
     {
         istr >> tmp >> sym;
-        if (tmp < s.MaxPower && tmp > 0)
+        if (tmp < s.MaxPower && tmp >= 0)
             s.InsElem(tmp);
     }
     return istr;
