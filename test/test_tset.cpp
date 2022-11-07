@@ -119,7 +119,6 @@ TEST(TSet, can_assign_set_of_less_size)
   set1.InsElem(3);
   set1.InsElem(5);
   set2 = set1;
-
   EXPECT_EQ(set1, set2);
 }
 

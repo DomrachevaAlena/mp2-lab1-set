@@ -139,7 +139,7 @@ TSet TSet::operator~(void) // дополнение
 }
 
 // перегрузка ввода/вывода
-
+// вводить через запятую с точкой в конце
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
     char sym = ' ';
@@ -147,7 +147,7 @@ istream &operator>>(istream &istr, TSet &s) // ввод
     while (sym != '.')
     {
         istr >> tmp >> sym;
-        if (tmp < s.MaxPower && tmp > 0)
+        if (tmp < s.MaxPower && tmp >= 0)
             s.InsElem(tmp);
     }
     return istr;
@@ -155,10 +155,19 @@ istream &operator>>(istream &istr, TSet &s) // ввод
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
-    for (size_t i = 0; i < s.GetMaxPower(); i++)
+    size_t i = 0;
+    while(! s.IsMember(i))
     {
-        if (s.IsMember(i))
-            ostr << "Index:" << i << endl;
+        i++;
     }
+    ostr << i; 
+    for (++i; i < s.GetMaxPower(); i++)
+    {
+        if (s.IsMember(i)) 
+        {
+            ostr << ", " << i;
+        }
+    }
+    ostr << "." << endl;
     return ostr;
 }
